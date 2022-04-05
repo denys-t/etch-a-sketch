@@ -1,10 +1,18 @@
+let containerSize = 520;
+const divContainer = document.querySelector("#container");
+divContainer.style = `width: ${containerSize}px; height: ${containerSize}px; border: 1px solid;`;
+
 const rangePixelSize = document.querySelector('#rangePixelSize');
 let pixelSize = rangePixelSize.value;
-let containerSize = 520;
-
 
 const divSliderValue = document.querySelector('#sliderValue');
 divSliderValue.textContent = pixelSize + " x " + pixelSize;
+
+const colorPicker = document.querySelector("#colorPicker");
+let pixelColor = '#7fff00';
+colorPicker.addEventListener('change', function(){
+    pixelColor = this.value;
+});
 
 rangePixelSize.addEventListener('input', function(){
     divSliderValue.textContent = this.value;
@@ -15,9 +23,6 @@ rangePixelSize.addEventListener('mouseup', function(){
     pixelSize = this.value;
     createGrid(pixelSize);
 });
-
-const divContainer = document.querySelector("#container");
-divContainer.style = `width: ${containerSize}px; height: ${containerSize}px; border: 1px solid;`;
 
 const btnClear = document.querySelector("#clear");
 btnClear.addEventListener('click', clearAll);
@@ -38,18 +43,18 @@ function createGrid(size){
         const divNew = document.createElement('div');
         divNew.id = `div-${i}`;
         divNew.style = `display: inline-block; width: ${divSize}px; height: ${divSize}px;`;
-        divNew.addEventListener('mouseover', addHover);
+        divNew.addEventListener('mouseover', colorPixel);
         divContainer.appendChild(divNew);
     }
 }
 
-function addHover(){
-    this.classList.add('div-hover');
+function colorPixel(){
+    this.style.backgroundColor = pixelColor;
 }
 
 function clearAll(){
     const pixels = document.querySelectorAll("#container div");
     pixels.forEach( (pixel) => {
-        pixel.classList.remove("div-hover");
+        pixel.style.backgroundColor = '#ffffff';
     });
 }
