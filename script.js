@@ -1,16 +1,38 @@
-let gridSize = 16;
+const rangePixelSize = document.querySelector('#rangePixelSize');
+let pixelSize = rangePixelSize.value;
 let containerSize = 520;
+
+
+const divSliderValue = document.querySelector('#sliderValue');
+divSliderValue.textContent = pixelSize + " x " + pixelSize;
+
+rangePixelSize.addEventListener('input', function(){
+    divSliderValue.textContent = this.value;
+    divSliderValue.textContent += " x " + divSliderValue.textContent;
+});
+
+rangePixelSize.addEventListener('mouseup', function(){
+    pixelSize = this.value;
+    createGrid(pixelSize);
+});
 
 const divContainer = document.querySelector("#container");
 divContainer.style = `width: ${containerSize}px; height: ${containerSize}px; border: 1px solid;`;
 
-const btnReset = document.querySelector("#reset");
-btnReset.addEventListener('click', resetAll);
+const btnClear = document.querySelector("#clear");
+btnClear.addEventListener('click', clearAll);
 
-createGrid(gridSize);
+createGrid(pixelSize);
 
 function createGrid(size){
-    let divSize = containerSize / gridSize;
+    if (document.querySelector('#div-1') != null ) {
+        const allPixels = document.querySelectorAll('#container div');
+        allPixels.forEach((pixel) => {
+            pixel.remove();
+        });
+    }
+
+    let divSize = containerSize / pixelSize;
 
     for (let i = 1; i <= (size*size); i++){
         const divNew = document.createElement('div');
@@ -21,14 +43,11 @@ function createGrid(size){
     }
 }
 
-/* const body = document.querySelector('body');
-body.appendChild(divContainer); */
-
 function addHover(){
     this.classList.add('div-hover');
 }
 
-function resetAll(){
+function clearAll(){
     const pixels = document.querySelectorAll("#container div");
     pixels.forEach( (pixel) => {
         pixel.classList.remove("div-hover");
