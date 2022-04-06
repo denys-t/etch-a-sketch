@@ -54,7 +54,6 @@ function createGrid(size){
 function colorPixel(){
     if (selectMode.value == 'rainbow') pixelColor = '#' + Math.floor(Math.random()*16777215).toString(16);
     this.style.backgroundColor = pixelColor;
-    console.log(pixelColor);
 }
 
 function clearAll(){
@@ -68,9 +67,14 @@ function changeDrawingMode(){
     switch (this.value) {
         case 'color':
             colorPicker.removeAttribute('hidden');
+            pixelColor = colorPicker.value;
             break;
         case 'rainbow':
             colorPicker.setAttribute('hidden', true);
+            break;
+        case 'eraser':
+            colorPicker.setAttribute('hidden', true);
+            pixelColor = '#ffffff';
             break;
     }
 }
