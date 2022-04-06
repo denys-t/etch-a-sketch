@@ -1,14 +1,58 @@
+html {
+    background: url('img/background.jpg') center center;
+    background-size: cover;
+    opacity: 0.85;
+    font-family: 'Lato', sans-serif;
+  }
+
 body {
     text-align: center;
+    opacity: 1;
+}
+
+h1 {
+    background-color: rgba(220, 220, 220, 0.8);
+    padding: 10px;
+}
+
+#wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-weight: bold;
+    font-size: larger;
 }
 
 #container {
-    display: inline-block;
+    background-color: white;
     line-height: 0px;
     font-size: 0px;
 }
 
 #controls {
-    display: inline-block;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    background-color: rgba(220, 220, 220, 0.8);
+    padding: 20px;
+}
+
+button {
+    background-color: gainsboro;
+    font-weight: bold;
+    font-size: large;
+    padding: 6px;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: burlywood;
+    box-shadow: 2px 3px dimgray;
+}
+
+select {
+    font-size: large;
+    padding: 3px;
 }
