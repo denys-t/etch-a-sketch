@@ -27,6 +27,9 @@ rangePixelSize.addEventListener('mouseup', function(){
 const btnClear = document.querySelector("#clear");
 btnClear.addEventListener('click', clearAll);
 
+const selectMode = document.querySelector('#mode');
+selectMode.addEventListener('change', changeDrawingMode);
+
 createGrid(pixelSize);
 
 function createGrid(size){
@@ -49,7 +52,9 @@ function createGrid(size){
 }
 
 function colorPixel(){
+    if (selectMode.value == 'rainbow') pixelColor = '#' + Math.floor(Math.random()*16777215).toString(16);
     this.style.backgroundColor = pixelColor;
+    console.log(pixelColor);
 }
 
 function clearAll(){
@@ -57,4 +62,15 @@ function clearAll(){
     pixels.forEach( (pixel) => {
         pixel.style.backgroundColor = '#ffffff';
     });
+}
+
+function changeDrawingMode(){
+    switch (this.value) {
+        case 'color':
+            colorPicker.removeAttribute('hidden');
+            break;
+        case 'rainbow':
+            colorPicker.setAttribute('hidden', true);
+            break;
+    }
 }

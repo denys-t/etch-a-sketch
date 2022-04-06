@@ -1,8 +1,14 @@
-.div-hover {
-    
+body {
+    text-align: center;
 }
 
 #container {
+    display: inline-block;
     line-height: 0px;
     font-size: 0px;
+}
+
+#controls {
+    display: inline-block;
+    text-align: center;
 }
