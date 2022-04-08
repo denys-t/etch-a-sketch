@@ -1,4 +1,5 @@
-let containerSize = 520;
+const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+let containerSize = Math.floor(4*vh/5);
 const divContainer = document.querySelector("#container");
 divContainer.style = `width: ${containerSize}px; height: ${containerSize}px; border: 1px solid;`;
 
