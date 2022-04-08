@@ -30,6 +30,15 @@ btnClear.addEventListener('click', clearAll);
 const selectMode = document.querySelector('#mode');
 selectMode.addEventListener('change', changeDrawingMode);
 
+let mouseDown = false;
+const body = document.querySelector("body");
+body.addEventListener('mousedown', () => {
+    mouseDown = true;
+});
+body.addEventListener('mouseup', () => {
+    mouseDown = false;
+});
+
 createGrid(pixelSize);
 
 function createGrid(size){
@@ -46,12 +55,14 @@ function createGrid(size){
         const divNew = document.createElement('div');
         divNew.id = `div-${i}`;
         divNew.style = `display: inline-block; width: ${divSize}px; height: ${divSize}px;`;
+        divNew.addEventListener('mousedown', colorPixel);
         divNew.addEventListener('mouseover', colorPixel);
         divContainer.appendChild(divNew);
     }
 }
 
-function colorPixel(){
+function colorPixel(e){
+    if (e.type === 'mouseover' && !mouseDown) return;
     if (selectMode.value == 'rainbow') pixelColor = '#' + Math.floor(Math.random()*16777215).toString(16);
     this.style.backgroundColor = pixelColor;
 }
